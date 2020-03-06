@@ -23,7 +23,8 @@ ActiveRecord::Schema.define(version: 2020_03_06_000743) do
     t.integer "servicio_id"
     t.integer "usuario_id"
     t.integer "semana"
-    t.string "dia"
+    t.integer "dia"
+    t.string "dia_completo"
     t.integer "inicio"
     t.integer "fin"
     t.datetime "created_at", precision: 6, null: false

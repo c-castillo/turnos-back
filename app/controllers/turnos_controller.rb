@@ -4,7 +4,7 @@ class TurnosController < ApplicationController
   def index
     @turnos =
     if (params[:servicio_id] && params[:semana])
-      Turno.where(servicio_id: params[:servicio_id], semana: params[:semana])
+      Turno.where(servicio_id: params[:servicio_id], semana: params[:semana]).order(:dia)
     else
       []
     end

@@ -4,7 +4,8 @@ class CreateTurnos < ActiveRecord::Migration[6.0]
       t.integer :servicio_id
       t.integer :usuario_id
       t.integer :semana
-      t.string :dia
+      t.integer :dia
+      t.string :dia_completo
       t.integer :inicio
       t.integer :fin
 

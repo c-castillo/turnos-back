@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'date'
 
 # Maneja los distintos servicios soportados por la plataforma
 class Servicio < ApplicationRecord
@@ -7,6 +8,8 @@ class Servicio < ApplicationRecord
   validates :nombre, presence: true
   validates :nombre, uniqueness: true
   validates :horarios, presence: true
+
+  DIAS = %w{Lunes Martes Miercoles Jueves Viernes Sabado Domingo}
 
   def asignar(semana)
     if turnos.where(semana: semana).empty?
@@ -19,18 +22,25 @@ class Servicio < ApplicationRecord
         if disp[asignado_id] >= horas_turno
           disp[asignado_id] -= horas_turno
           turnos_by_day(dia).each do |turno|
-            turnos.new(semana: semana, dia: dia, inicio: turno[0], fin: turno[1], usuario_id: asignado_id)
-            puts "ASIGNADO inicio: #{turno[0]} fin: #{turno[1]} usuario_id: #{asignado_id} dia: #{dia} semana: #{semana}"
+            turnos.new(semana: semana, dia: DIAS.index(dia)+1, dia_completo: week_dates(semana, dia), inicio: turno[0], fin: turno[1], usuario_id: asignado_id)
+            puts "ASIGNADO inicio: #{turno[0]} fin: #{turno[1]} usuario_id: #{asignado_id} dia: #{week_dates(semana, dia)} semana: #{semana}"
           end
         else
-          turnos_by_day(e.keys.first).each do |turno|
-            puts "SIN ASIGNAR inicio: #{turno[0]} fin: #{turno[1]} dia: #{dia} semana: #{semana}"
-            turnos.new(semana: semana, dia: dia, inicio: turno[0], fin: turno[1])
+          turnos_by_day(dia).each do |turno|
+            puts "SIN ASIGNAR inicio: #{turno[0]} fin: #{turno[1]} dia_completo: #{week_dates(semana, dia)} semana: #{semana}"
+            turnos.new(semana: semana, dia: DIAS.index(dia)+1, dia_completo: week_dates(semana, dia), inicio: turno[0], fin: turno[1])
           end
         end
       end
       save!
     end
+  end
+
+
+  def week_dates( week_num, dia )
+    year = Time.now.year
+    week_day = Date.commercial( year, week_num, DIAS.index(dia)+1)
+    return dia + week_day.strftime( " %d de %b" )
   end
 
   def disponibilidad_usuarios
