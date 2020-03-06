@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HorarioTest < ActiveSupport::TestCase
+class TurnoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

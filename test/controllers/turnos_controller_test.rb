@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HorariosControllerTest < ActionDispatch::IntegrationTest
+class TurnosControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

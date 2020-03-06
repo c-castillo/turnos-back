@@ -4,5 +4,5 @@
 class Usuario < ApplicationRecord
   belongs_to :servicio
   validates :servicio_id, presence: true
-  validates :name, presence: true
+  validates :nombre, presence: true
 end

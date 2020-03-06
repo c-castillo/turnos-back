@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  servicio_id: 1
+  semana: 1
+  dia: MyString
+  inicio: 1
+  fin: MyString
+  integer: MyString
+
+two:
+  servicio_id: 1
+  semana: 1
+  dia: MyString
+  inicio: 1
+  fin: MyString
+  integer: MyString

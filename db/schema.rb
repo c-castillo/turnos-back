@@ -10,26 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_013352) do
+ActiveRecord::Schema.define(version: 2020_03_06_000743) do
 
-  create_table "horarios", force: :cascade do |t|
-    t.integer "servicio_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
+  create_table "servicios", force: :cascade do |t|
+    t.string "nombre"
+    t.json "horarios"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "servicios", force: :cascade do |t|
-    t.string "name"
-    t.json "hours"
+  create_table "turnos", force: :cascade do |t|
+    t.integer "servicio_id"
+    t.integer "usuario_id"
+    t.integer "semana"
+    t.string "dia"
+    t.integer "inicio"
+    t.integer "fin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "usuarios", force: :cascade do |t|
     t.integer "servicio_id"
-    t.string "name"
+    t.string "nombre"
+    t.integer "disponibilidad"
+    t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

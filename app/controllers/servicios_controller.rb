@@ -19,6 +19,6 @@ class ServiciosController < ApplicationController
   private
 
   def servicios_params
-    params.permit(:name, hours: %i[day start finish] )
+    params.permit(:nombre, horarios: %i[day start finish] )
   end
 end
