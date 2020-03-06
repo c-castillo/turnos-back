@@ -50,3 +50,47 @@ servicio.usuarios.create([
 
 servicio.asignar(10)
 servicio.asignar(11)
+
+
+otroServicio = Servicio.create!(
+  "nombre": 'Buses Castillo',
+  "horarios": [
+    {
+      "day": 'Lunes',
+      "turnos": { "start": '17', end: '22' }
+    },
+    {
+      "day": 'Martes',
+      "turnos": { "start": '17', end: '22' }
+    },
+    {
+      "day": 'Miercoles',
+      "turnos": { "start": '17', end: '22' }
+    },
+    {
+      "day": 'Jueves',
+      "turnos": { "start": '17', end: '22' }
+    },
+    {
+      "day": 'Viernes',
+      "turnos": { "start": '17', end: '22' }
+    },
+    {
+      "day": 'Sabado',
+      "turnos": { "start": '11', end: '23' }
+    },
+    {
+      "day": 'Domingo',
+      "turnos": { "start": '11', end: '23' }
+    }
+  ]
+)
+
+otroServicio.usuarios.create([
+                       { nombre: 'Paulina', disponibilidad: 15, color: 'yellow' },
+                       { nombre: 'Antonia', disponibilidad: 19, color: 'pink' },
+                       { nombre: 'Ross', disponibilidad: 16, color: 'lime' }
+                     ])
+
+otroServicio.asignar(10)
+otroServicio.asignar(11)
