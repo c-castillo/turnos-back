@@ -27,8 +27,15 @@ class Servicio < ApplicationRecord
           end
         else
           turnos_by_day(dia).each do |turno|
-            puts "SIN ASIGNAR inicio: #{turno[0]} fin: #{turno[1]} dia_completo: #{week_dates(semana, dia)} semana: #{semana}"
-            turnos.new(semana: semana, dia: DIAS.index(dia)+1, dia_completo: week_dates(semana, dia), inicio: turno[0], fin: turno[1])
+            asignado_id = disp.max_by { |_k, v| v }.first
+            if disp[asignado_id].positive?
+              turnos.new(semana: semana, dia: DIAS.index(dia)+1, dia_completo: week_dates(semana, dia), inicio: turno[0], fin: turno[1], usuario_id: asignado_id)
+              puts "ASIGNADO inicio: #{turno[0]} fin: #{turno[1]} usuario_id: #{asignado_id} dia: #{week_dates(semana, dia)} semana: #{semana}"
+              disp[asignado_id] -= 1
+            else
+              puts "SIN ASIGNAR inicio: #{turno[0]} fin: #{turno[1]} dia_completo: #{week_dates(semana, dia)} semana: #{semana}"
+              turnos.new(semana: semana, dia: DIAS.index(dia)+1, dia_completo: week_dates(semana, dia), inicio: turno[0], fin: turno[1])
+            end
           end
         end
       end
